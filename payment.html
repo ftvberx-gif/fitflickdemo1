@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FITFLICK | Payment</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: white;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo img {
+            width: 130px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .box h2 {
+            margin-bottom: 20px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .payment-option {
+            border: 2px solid #ddd;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: #e75480;
+        }
+
+        .payment-option input {
+            margin-right: 10px;
+        }
+
+        .fee {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            border-top: 2px solid #222;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .cod-message {
+            display: none;
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .pay-btn {
+            background: #111;
+            color: white;
+        }
+
+        .print-btn {
+            background: #e75480;
+            color: white;
+            display: none;
+        }
+
+        .success {
+            display: none;
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @media print {
+
+            header,
+            .payment-section,
+            .pay-btn,
+            .print-btn,
+            #successMessage {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+
+            .box {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            #bill {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <img src="logo.jpg.jpeg" alt="FITFLICK Logo">
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shirt.html">Shirts</a>
+        <a href="jacket.html">Jackets</a>
+        <a href="pant.html">Pants</a>
+        <a href="cart.html">🛒 Cart</a>
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+    <h1>FITFLICK Payment</h1>
+
+
+    <!-- ORDER ITEMS -->
+
+    <div class="box">
+
+        <h2>Order Summary</h2>
+
+        <div id="orderItems"></div>
+
+        <div class="fee">
+            <span>Product Total</span>
+            <span id="productTotal">₹0</span>
+        </div>
+
+        <div class="fee" id="codFeeRow" style="display:none;">
+            <span>Shipping & Handling Fee</span>
+            <span>₹107</span>
+        </div>
+
+        <div class="total">
+            <span>Total</span>
+            <span id="grandTotal">₹0</span>
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <div class="box payment-section">
+
+        <h2>Select Payment Method</h2>
+
+
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="payment"
+                value="online"
+                checked
+                onchange="changePayment()"
+            >
+
+            💳 Online Payment
+
+        </label>
+
+
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="payment"
+                value="cod"
+                onchange="changePayment()"
+            >
+
+            💵 Cash on Delivery (COD)
+
+        </label>
+
+
+        <div id="codMessage" class="cod-message">
+
+            <strong>COD Selected</strong>
+
+            <br><br>
+
+            ₹107 shipping and handling fee has been added
+            automatically to your order.
+
+        </div>
+
+
+        <button
+            class="pay-btn"
+            onclick="placeOrder()"
+        >
+            Confirm Payment
+        </button>
+
+    </div>
+
+
+    <!-- SUCCESS -->
+
+    <div id="successMessage" class="success">
+
+        <h2>✅ Order Placed Successfully!</h2>
+
+        <p id="orderNumber"></p>
+
+        <br>
+
+        <p id="paymentText"></p>
+
+    </div>
+
+
+    <!-- PRINT BILL -->
+
+    <div id="bill" class="box" style="display:none;">
+
+        <h2 style="text-align:center;">
+            FITFLICK
+        </h2>
+
+        <p style="text-align:center;">
+            Official Order Bill
+        </p>
+
+        <hr><br>
+
+        <p>
+            <strong>Order ID:</strong>
+            <span id="billOrderId"></span>
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            <span id="billDate"></span>
+        </p>
+
+        <p>
+            <strong>Payment:</strong>
+            <span id="billPayment"></span>
+        </p>
+
+        <br>
+
+        <h3>Items</h3>
+
+        <div id="billItems"></div>
+
+        <br>
+
+        <div class="fee">
+            <strong>Product Total</strong>
+            <strong id="billProductTotal">₹0</strong>
+        </div>
+
+        <div
+            class="fee"
+            id="billShippingRow"
+            style="display:none;"
+        >
+            <strong>Shipping & Handling</strong>
+            <strong>₹107</strong>
+        </div>
+
+        <div class="total">
+
+            <span>Grand Total</span>
+
+            <span id="billGrandTotal">
+                ₹0
+            </span>
+
+        </div>
+
+        <br>
+
+        <p style="text-align:center;">
+            Thank you for shopping with FITFLICK!
+        </p>
+
+    </div>
+
+
+    <button
+        id="printButton"
+        class="print-btn"
+        onclick="window.print()"
+    >
+        🖨️ Print COD Bill
+    </button>
+
+</div>
+
+
+<script>
+
+let cart = JSON.parse(
+    localStorage.getItem("fitflickCart")
+) || [];
+
+
+let productTotal = 0;
+
+
+// SHOW CART ITEMS
+
+function loadCart() {
+
+    const orderItems =
+        document.getElementById("orderItems");
+
+    const billItems =
+        document.getElementById("billItems");
+
+    orderItems.innerHTML = "";
+    billItems.innerHTML = "";
+
+    productTotal = 0;
+
+
+    if (cart.length === 0) {
+
+        orderItems.innerHTML =
+            "<p>Your cart is empty.</p>";
+
+        return;
+    }
+
+
+    cart.forEach(function(item) {
+
+        let quantity = item.quantity || 1;
+
+        let itemTotal =
+            Number(item.price) * quantity;
+
+        productTotal += itemTotal;
+
+
+        orderItems.innerHTML += `
+
+            <div class="item">
+
+                <span>
+                    ${item.name}
+                    × ${quantity}
+                </span>
+
+                <strong>
+                    ₹${itemTotal}
+                </strong>
+
+            </div>
+
+        `;
+
+
+        billItems.innerHTML += `
+
+            <div class="item">
+
+                <span>
+                    ${item.name}
+                    × ${quantity}
+                </span>
+
+                <strong>
+                    ₹${itemTotal}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+
+    document.getElementById("productTotal")
+        .innerText = "₹" + productTotal;
+
+    document.getElementById("billProductTotal")
+        .innerText = "₹" + productTotal;
+
+
+    updateTotal();
+
+}
+
+
+function updateTotal() {
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        ).value;
+
+
+    let total = productTotal;
+
+
+    if (payment === "cod") {
+
+        total += 107;
+
+    }
+
+
+    document.getElementById("grandTotal")
+        .innerText = "₹" + total;
+
+    document.getElementById("billGrandTotal")
+        .innerText = "₹" + total;
+
+}
+
+
+function changePayment() {
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        ).value;
+
+
+    const codMessage =
+        document.getElementById("codMessage");
+
+    const codFeeRow =
+        document.getElementById("codFeeRow");
+
+    const billShippingRow =
+        document.getElementById("billShippingRow");
+
+
+    if (payment === "cod") {
+
+        codMessage.style.display = "block";
+
+        codFeeRow.style.display = "flex";
+
+        billShippingRow.style.display = "flex";
+
+    }
+
+    else {
+
+        codMessage.style.display = "none";
+
+        codFeeRow.style.display = "none";
+
+        billShippingRow.style.display = "none";
+
+    }
+
+
+    updateTotal();
+
+}
+
+
+function placeOrder() {
+
+    if (cart.length === 0) {
+
+        alert("Your cart is empty!");
+
+        return;
+
+    }
+
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        ).value;
+
+
+    let total = productTotal;
+
+
+    if (payment === "cod") {
+
+        total += 107;
+
+    }
+
+
+    const orderId =
+        "FIT" +
+        Date.now().toString().slice(-8);
+
+
+    const today =
+        new Date().toLocaleString();
+
+
+    // SAVE ORDER
+
+    const order = {
+
+        orderId: orderId,
+
+        items: cart,
+
+        productTotal: productTotal,
+
+        shippingFee:
+            payment === "cod" ? 107 : 0,
+
+        total: total,
+
+        paymentMethod:
+            payment === "cod"
+                ? "Cash on Delivery"
+                : "Online Payment",
+
+        date: today,
+
+        status: "Order Placed"
+
+    };
+
+
+    localStorage.setItem(
+        "fitflickLastOrder",
+        JSON.stringify(order)
+    );
+
+
+    // SUCCESS MESSAGE
+
+    document.getElementById(
+        "successMessage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "orderNumber"
+    ).innerText =
+        "Order ID: " + orderId;
+
+
+    document.getElementById(
+        "paymentText"
+    ).innerText =
+        "Payment Method: " +
+        order.paymentMethod;
+
+
+    // BILL
+
+    document.getElementById(
+        "billOrderId"
+    ).innerText = orderId;
+
+
+    document.getElementById(
+        "billDate"
+    ).innerText = today;
+
+
+    document.getElementById(
+        "billPayment"
+    ).innerText =
+        order.paymentMethod;
+
+
+    document.getElementById(
+        "billGrandTotal"
+    ).innerText =
+        "₹" + total;
+
+
+    document.getElementById(
+        "bill"
+    ).style.display = "block";
+
+
+    // COD PRINT BUTTON
+
+    if (payment === "cod") {
+
+        document.getElementById(
+            "printButton"
+        ).style.display = "block";
+
+    }
+
+
+    // CLEAR CART
+
+    localStorage.removeItem(
+        "fitflickCart"
+    );
+
+
+    alert(
+        "Order placed successfully!\n\nOrder ID: " +
+        orderId
+    );
+
+}
+
+
+loadCart();
+
+</script>
+
+</body>
+</html>

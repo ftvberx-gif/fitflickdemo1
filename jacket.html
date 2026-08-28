@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITFLICK | Jackets</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+        }
+
+        header {
+            background: white;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo img {
+            width: 130px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+        }
+
+        .cart {
+            background: #111;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 40px 0 30px;
+            font-size: 38px;
+        }
+
+        .products {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding-bottom: 50px;
+        }
+
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product h2 {
+            margin-top: 15px;
+            font-size: 20px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        select {
+            padding: 9px;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        button {
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add {
+            background: #111;
+            color: white;
+        }
+
+        .buy {
+            background: #e75480;
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+            .products {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            nav a:not(.cart) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <img src="logo.jpg.jpeg" alt="FITFLICK Logo">
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shirt.html">Shirts</a>
+        <a href="jacket.html">Jackets</a>
+        <a href="pant.html">Pants</a>
+        <a href="cart.html" class="cart">🛒 Cart</a>
+    </nav>
+
+</header>
+
+<h1>FITFLICK Jackets</h1>
+
+<div class="products">
+
+    <div class="product">
+        <img src="jacket1.jpg" alt="FITFLICK Jacket 1">
+        <h2>FITFLICK Jacket 01</h2>
+        <div class="price">₹1,499</div>
+
+        <select>
+            <option>Choose Size</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+        </select>
+
+        <button class="add" onclick="addToCart('FITFLICK Jacket 01',1499)">
+            Add Cart
+        </button>
+
+        <button class="buy" onclick="buyNow('FITFLICK Jacket 01')">
+            Buy Now
+        </button>
+    </div>
+
+
+    <div class="product">
+        <img src="jacket2.jpg" alt="FITFLICK Jacket 2">
+        <h2>FITFLICK Jacket 02</h2>
+        <div class="price">₹1,599</div>
+
+        <select>
+            <option>Choose Size</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+        </select>
+
+        <button class="add" onclick="addToCart('FITFLICK Jacket 02',1599)">
+            Add Cart
+        </button>
+
+        <button class="buy" onclick="buyNow('FITFLICK Jacket 02')">
+            Buy Now
+        </button>
+    </div>
+
+
+    <div class="product">
+        <img src="jacket3.jpg" alt="FITFLICK Jacket 3">
+        <h2>FITFLICK Jacket 03</h2>
+        <div class="price">₹1,699</div>
+
+        <select>
+            <option>Choose Size</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+        </select>
+
+        <button class="add" onclick="addToCart('FITFLICK Jacket 03',1699)">
+            Add Cart
+        </button>
+
+        <button class="buy" onclick="buyNow('FITFLICK Jacket 03')">
+            Buy Now
+        </button>
+    </div>
+
+
+    <div class="product">
+        <img src="jacket4.jpg" alt="FITFLICK Jacket 4">
+        <h2>FITFLICK Jacket 04</h2>
+        <div class="price">₹1,799</div>
+
+        <select>
+            <option>Choose Size</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+        </select>
+
+        <button class="add" onclick="addToCart('FITFLICK Jacket 04',1799)">
+            Add Cart
+        </button>
+
+        <button class="buy" onclick="buyNow('FITFLICK Jacket 04')">
+            Buy Now
+        </button>
+    </div>
+
+
+    <div class="product">
+        <img src="jacket5.jpg" alt="FITFLICK Jacket 5">
+        <h2>FITFLICK Jacket 05</h2>
+        <div class="price">₹1,899</div>
+
+        <select>
+            <option>Choose Size</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+        </select>
+
+        <button class="add" onclick="addToCart('FITFLICK Jacket 05',1899)">
+            Add Cart
+        </button>
+
+        <button class="buy" onclick="buyNow('FITFLICK Jacket 05')">
+            Buy Now
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+function addToCart(name, price) {
+
+    let cart = JSON.parse(localStorage.getItem("fitflickCart")) || [];
+
+    cart.push({
+        name: name,
+        price: price,
+        quantity: 1
+    });
+
+    localStorage.setItem("fitflickCart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+
+}
+
+function buyNow(name) {
+
+    alert("Buy Now: " + name);
+
+}
+
+</script>
+
+</body>
+</html>

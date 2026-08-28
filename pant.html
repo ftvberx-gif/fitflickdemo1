@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITFLICK | Pants</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        header {
+            background: #fff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo img {
+            width: 130px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+        }
+
+        .cart {
+            background: #111;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 25px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 45px 20px;
+            background: white;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #666;
+        }
+
+        .products {
+            width: 92%;
+            max-width: 1400px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: 330px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .details {
+            padding: 15px;
+        }
+
+        .details h3 {
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .old {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 13px;
+            margin-left: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add {
+            background: #111;
+            color: white;
+        }
+
+        .buy {
+            background: #e63946;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-top: 8px;
+            color: #aaa;
+        }
+
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            nav a:not(.cart) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <img src="logo.jpg.jpeg" alt="FITFLICK">
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shirt.html">Shirts</a>
+        <a href="jacket.html">Jackets</a>
+        <a href="pant.html">Pants</a>
+
+        <a href="cart.html" class="cart">
+            🛒 Cart <span id="cartCount">0</span>
+        </a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+    <h1>FITFLICK Pants</h1>
+    <p>Find your perfect fit</p>
+</section>
+
+
+<section class="products">
+
+    <!-- PANT 1 -->
+    <div class="product">
+        <img src="pant1.jpg" alt="FITFLICK Pant 1">
+
+        <div class="details">
+            <h3>FITFLICK Pant 01</h3>
+
+            <div class="price">
+                ₹1,299
+                <span class="old">₹1,599</span>
+            </div>
+
+            <select id="size1">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 01',1299,'pant1.jpg','size1')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 01',1299,'pant1.jpg','size1')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 2 -->
+    <div class="product">
+        <img src="pant2.jpg" alt="FITFLICK Pant 2">
+
+        <div class="details">
+            <h3>FITFLICK Pant 02</h3>
+
+            <div class="price">
+                ₹1,399
+                <span class="old">₹1,699</span>
+            </div>
+
+            <select id="size2">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 02',1399,'pant2.jpg','size2')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 02',1399,'pant2.jpg','size2')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 3 -->
+    <div class="product">
+        <img src="pant3.jpg" alt="FITFLICK Pant 3">
+
+        <div class="details">
+            <h3>FITFLICK Pant 03</h3>
+
+            <div class="price">
+                ₹1,499
+                <span class="old">₹1,799</span>
+            </div>
+
+            <select id="size3">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 03',1499,'pant3.jpg','size3')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 03',1499,'pant3.jpg','size3')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 4 -->
+    <div class="product">
+        <img src="pant4.jpg" alt="FITFLICK Pant 4">
+
+        <div class="details">
+            <h3>FITFLICK Pant 04</h3>
+
+            <div class="price">
+                ₹1,599
+                <span class="old">₹1,899</span>
+            </div>
+
+            <select id="size4">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 04',1599,'pant4.jpg','size4')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 04',1599,'pant4.jpg','size4')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 5 -->
+    <div class="product">
+        <img src="pant5.jpg" alt="FITFLICK Pant 5">
+
+        <div class="details">
+            <h3>FITFLICK Pant 05</h3>
+
+            <div class="price">
+                ₹1,299
+                <span class="old">₹1,599</span>
+            </div>
+
+            <select id="size5">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 05',1299,'pant5.jpg','size5')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 05',1299,'pant5.jpg','size5')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 6 -->
+    <div class="product">
+        <img src="pant6.jpg" alt="FITFLICK Pant 6">
+
+        <div class="details">
+            <h3>FITFLICK Pant 06</h3>
+
+            <div class="price">
+                ₹1,449
+                <span class="old">₹1,749</span>
+            </div>
+
+            <select id="size6">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 06',1449,'pant6.jpg','size6')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 06',1449,'pant6.jpg','size6')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 7 -->
+    <div class="product">
+        <img src="pant7.jpg" alt="FITFLICK Pant 7">
+
+        <div class="details">
+            <h3>FITFLICK Pant 07</h3>
+
+            <div class="price">
+                ₹1,549
+                <span class="old">₹1,849</span>
+            </div>
+
+            <select id="size7">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 07',1549,'pant7.jpg','size7')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 07',1549,'pant7.jpg','size7')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 8 -->
+    <div class="product">
+        <img src="pant8.jpg" alt="FITFLICK Pant 8">
+
+        <div class="details">
+            <h3>FITFLICK Pant 08</h3>
+
+            <div class="price">
+                ₹1,399
+                <span class="old">₹1,699</span>
+            </div>
+
+            <select id="size8">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 08',1399,'pant8.jpg','size8')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 08',1399,'pant8.jpg','size8')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 9 -->
+    <div class="product">
+        <img src="pant9.jpg" alt="FITFLICK Pant 9">
+
+        <div class="details">
+            <h3>FITFLICK Pant 09</h3>
+
+            <div class="price">
+                ₹1,649
+                <span class="old">₹1,999</span>
+            </div>
+
+            <select id="size9">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 09',1649,'pant9.jpg','size9')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 09',1649,'pant9.jpg','size9')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PANT 10 -->
+    <div class="product">
+        <img src="pant10.jpg" alt="FITFLICK Pant 10">
+
+        <div class="details">
+            <h3>FITFLICK Pant 10</h3>
+
+            <div class="price">
+                ₹1,749
+                <span class="old">₹2,099</span>
+            </div>
+
+            <select id="size10">
+                <option value="">Select Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add" onclick="addToCart('FITFLICK Pant 10',1749,'pant10.jpg','size10')">
+                    Add Cart
+                </button>
+
+                <button class="buy" onclick="buyNow('FITFLICK Pant 10',1749,'pant10.jpg','size10')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<footer>
+    <h3>FITFLICK</h3>
+    <p>Fashion that fits you.</p>
+    <p>© 2026 FITFLICK. All Rights Reserved.</p>
+</footer>
+
+
+<script>
+
+function getCart() {
+    return JSON.parse(localStorage.getItem("fitflickCart")) || [];
+}
+
+
+function saveCart(cart) {
+    localStorage.setItem("fitflickCart", JSON.stringify(cart));
+}
+
+
+function addToCart(name, price, image, sizeId) {
+
+    const size = document.getElementById(sizeId).value;
+
+    if (size === "") {
+        alert("Please select a size.");
+        return;
+    }
+
+    let cart = getCart();
+
+    const existing = cart.find(function(item) {
+        return item.name === name && item.size === size;
+    });
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            size: size,
+            quantity: 1
+        });
+    }
+
+    saveCart(cart);
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+}
+
+
+function buyNow(name, price, image, sizeId) {
+
+    const size = document.getElementById(sizeId).value;
+
+    if (size === "") {
+        alert("Please select a size.");
+        return;
+    }
+
+    const item = {
+        name: name,
+        price: price,
+        image: image,
+        size: size,
+        quantity: 1
+    };
+
+    localStorage.setItem("fitflickCart", JSON.stringify([item]));
+
+    window.location.href = "checkout.html";
+}
+
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    let total = 0;
+
+    cart.forEach(function(item) {
+        total += item.quantity;
+    });
+
+    document.getElementById("cartCount").textContent = total;
+}
+
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>

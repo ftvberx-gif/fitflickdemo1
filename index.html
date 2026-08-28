@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FITFLICK | Official Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        /* HEADER */
+
+        header {
+            background: white;
+            min-height: 80px;
+            padding: 10px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .top-logo img {
+            width: 130px;
+            height: auto;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .cart {
+            background: #111;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 25px;
+        }
+
+        /* HOME HERO */
+
+        .hero {
+            min-height: 650px;
+            background: linear-gradient(
+                135deg,
+                #ffffff,
+                #f8e9eb,
+                #ffffff
+            );
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        /* YOUR SHOP LOGO */
+
+        .hero-logo {
+            margin-bottom: 25px;
+        }
+
+        .hero-logo img {
+            width: 350px;
+            max-width: 80vw;
+            height: auto;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            color: #e63946;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .shop-btn:hover {
+            background: #e63946;
+        }
+
+        /* CATEGORIES */
+
+        .categories {
+            padding: 60px 6%;
+            text-align: center;
+        }
+
+        .categories h2 {
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .category {
+            background: white;
+            padding: 35px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .category h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .category p {
+            color: #666;
+        }
+
+        .category a {
+            display: inline-block;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .category a:hover {
+            background: #e63946;
+        }
+
+        /* FEATURES */
+
+        .features {
+            background: white;
+            padding: 45px 6%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .feature {
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 10px 20px;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            nav a:not(.cart) {
+                display: none;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero-logo img {
+                width: 280px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a href="index.html" class="top-logo">
+            <img src="logo.jpg.jpeg" alt="FITFLICK Logo">
+        </a>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="shirt.html">Shirts</a>
+
+            <a href="jacket.html">Jackets</a>
+
+            <a href="pant.html">Pants</a>
+
+            <a href="cart.html" class="cart">
+                🛒 Cart
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HOME PAGE -->
+
+    <section class="hero">
+
+        <!-- BIG SHOP LOGO -->
+
+        <div class="hero-logo">
+            <img src="logo.jpg.jpeg" alt="FITFLICK Logo">
+        </div>
+
+        <h1>
+            Welcome to <span>FITFLICK</span>
+        </h1>
+
+        <p>
+            Discover premium fashion made for your style.
+            Explore our latest collection of shirts,
+            jackets and pants.
+        </p>
+
+        <a href="shirt.html" class="shop-btn">
+            Shop Now →
+        </a>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+
+    <section class="categories">
+
+        <h2>
+            Shop Our Collection
+        </h2>
+
+        <div class="category-grid">
+
+            <div class="category">
+
+                <h3>👕 Shirts</h3>
+
+                <p>
+                    Explore our latest shirts.
+                </p>
+
+                <a href="shirt.html">
+                    Shop Shirts
+                </a>
+
+            </div>
+
+
+            <div class="category">
+
+                <h3>🧥 Jackets</h3>
+
+                <p>
+                    Upgrade your style.
+                </p>
+
+                <a href="jacket.html">
+                    Shop Jackets
+                </a>
+
+            </div>
+
+
+            <div class="category">
+
+                <h3>👖 Pants</h3>
+
+                <p>
+                    Find your perfect fit.
+                </p>
+
+                <a href="pant.html">
+                    Shop Pants
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">🚚</div>
+
+            <h3>Fast Delivery</h3>
+
+            <p>
+                Quick delivery to your doorstep.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">🔒</div>
+
+            <h3>Secure Payment</h3>
+
+            <p>
+                Safe and secure online payments.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">↩️</div>
+
+            <h3>Easy Returns</h3>
+
+            <p>
+                Simple return process.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">📞</div>
+
+            <h3>Support</h3>
+
+            <p>
+                We're here to help.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h2>FITFLICK</h2>
+
+        <p>
+            Fashion that fits you.
+        </p>
+
+        <p>
+            © 2026 FITFLICK. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+</html>

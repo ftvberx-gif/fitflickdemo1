@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITFLICK | Shirts</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f7f7;
+            color: #111;
+        }
+
+        header {
+            background: white;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+
+        .logo img {
+            width: 130px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+        }
+
+        .cart {
+            background: #111;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(120deg, #fff1f3, #f3f4ff);
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero span {
+            color: #e63946;
+        }
+
+        .hero p {
+            color: #666;
+        }
+
+        .products {
+            width: 92%;
+            max-width: 1300px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            padding-bottom: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.08);
+        }
+
+        .product img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .info {
+            padding: 15px;
+        }
+
+        .info h3 {
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 13px;
+            margin-left: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .buttons button {
+            flex: 1;
+            padding: 11px 5px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add {
+            background: #111;
+            color: white;
+        }
+
+        .buy {
+            background: #e63946;
+            color: white;
+        }
+
+        .buttons button:hover {
+            opacity: .85;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav a:not(.cart) {
+                display: none;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product img {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <img src="logo.jpg.jpeg" alt="FITFLICK Logo">
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shirt.html">Shirts</a>
+        <a href="jacket.html">Jackets</a>
+        <a href="pant.html">Pants</a>
+        <a href="cart.html" class="cart">
+            🛒 Cart <span id="cartCount">0</span>
+        </a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+    <h1>FITFLICK <span>Shirts</span></h1>
+    <p>Explore our latest shirt collection</p>
+</section>
+
+
+<section class="products">
+
+    <!-- SHIRT 1 -->
+    <div class="product">
+        <img src="shirt1.jpg" alt="Premium Shirt 01">
+        <div class="info">
+            <h3>Premium Shirt 01</h3>
+            <div class="price">
+                ₹799
+                <span class="old-price">₹999</span>
+            </div>
+
+            <select id="size1">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 01',799,'shirt1.jpg','size1')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 01',799,'shirt1.jpg','size1')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 2 -->
+    <div class="product">
+        <img src="shirt2.jpg" alt="Premium Shirt 02">
+        <div class="info">
+            <h3>Premium Shirt 02</h3>
+            <div class="price">
+                ₹849
+                <span class="old-price">₹1049</span>
+            </div>
+
+            <select id="size2">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 02',849,'shirt2.jpg','size2')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 02',849,'shirt2.jpg','size2')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 3 -->
+    <div class="product">
+        <img src="shirt3.jpg" alt="Premium Shirt 03">
+        <div class="info">
+            <h3>Premium Shirt 03</h3>
+            <div class="price">
+                ₹899
+                <span class="old-price">₹1099</span>
+            </div>
+
+            <select id="size3">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 03',899,'shirt3.jpg','size3')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 03',899,'shirt3.jpg','size3')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 4 -->
+    <div class="product">
+        <img src="shirt4.jpg" alt="Premium Shirt 04">
+        <div class="info">
+            <h3>Premium Shirt 04</h3>
+            <div class="price">
+                ₹749
+                <span class="old-price">₹949</span>
+            </div>
+
+            <select id="size4">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 04',749,'shirt4.jpg','size4')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 04',749,'shirt4.jpg','size4')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 5 -->
+    <div class="product">
+        <img src="shirt5.jpg" alt="Premium Shirt 05">
+        <div class="info">
+            <h3>Premium Shirt 05</h3>
+            <div class="price">
+                ₹799
+                <span class="old-price">₹999</span>
+            </div>
+
+            <select id="size5">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 05',799,'shirt5.jpg','size5')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 05',799,'shirt5.jpg','size5')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 6 -->
+    <div class="product">
+        <img src="shirt6.jpg" alt="Premium Shirt 06">
+        <div class="info">
+            <h3>Premium Shirt 06</h3>
+            <div class="price">
+                ₹899
+                <span class="old-price">₹1099</span>
+            </div>
+
+            <select id="size6">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 06',899,'shirt6.jpg','size6')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 06',899,'shirt6.jpg','size6')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 7 -->
+    <div class="product">
+        <img src="shirt7.jpg" alt="Premium Shirt 07">
+        <div class="info">
+            <h3>Premium Shirt 07</h3>
+            <div class="price">
+                ₹749
+                <span class="old-price">₹949</span>
+            </div>
+
+            <select id="size7">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 07',749,'shirt7.jpg','size7')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 07',749,'shirt7.jpg','size7')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 8 -->
+    <div class="product">
+        <img src="shirt8.jpg" alt="Premium Shirt 08">
+        <div class="info">
+            <h3>Premium Shirt 08</h3>
+            <div class="price">
+                ₹799
+                <span class="old-price">₹999</span>
+            </div>
+
+            <select id="size8">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 08',799,'shirt8.jpg','size8')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 08',799,'shirt8.jpg','size8')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 9 -->
+    <div class="product">
+        <img src="shirt9.jpg" alt="Premium Shirt 09">
+        <div class="info">
+            <h3>Premium Shirt 09</h3>
+            <div class="price">
+                ₹849
+                <span class="old-price">₹1049</span>
+            </div>
+
+            <select id="size9">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 09',849,'shirt9.jpg','size9')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 09',849,'shirt9.jpg','size9')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SHIRT 10 -->
+    <div class="product">
+        <img src="shirt10.jpg" alt="Premium Shirt 10">
+        <div class="info">
+            <h3>Premium Shirt 10</h3>
+            <div class="price">
+                ₹899
+                <span class="old-price">₹1099</span>
+            </div>
+
+            <select id="size10">
+                <option value="">Choose Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+
+            <div class="buttons">
+                <button class="add"
+                    onclick="addProduct('Premium Shirt 10',899,'shirt10.jpg','size10')">
+                    Add Cart
+                </button>
+
+                <button class="buy"
+                    onclick="buyProduct('Premium Shirt 10',899,'shirt10.jpg','size10')">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<footer>
+    <h3>FITFLICK</h3>
+    <p>Fashion that fits you.</p>
+    <p>© 2026 FITFLICK. All Rights Reserved.</p>
+</footer>
+
+
+<script>
+
+function getCart() {
+    return JSON.parse(localStorage.getItem("fitflickCart")) || [];
+}
+
+
+function saveCart(cart) {
+    localStorage.setItem(
+        "fitflickCart",
+        JSON.stringify(cart)
+    );
+}
+
+
+function addProduct(name, price, image, sizeId) {
+
+    const size =
+        document.getElementById(sizeId).value;
+
+    if (!size) {
+        alert("Please select a size first.");
+        return;
+    }
+
+    let cart = getCart();
+
+    const existing =
+        cart.find(item =>
+            item.name === name &&
+            item.size === size
+        );
+
+    if (existing) {
+
+        existing.quantity += 1;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: Number(price),
+            image: image,
+            size: size,
+            quantity: 1
+        });
+
+    }
+
+    saveCart(cart);
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+
+    window.location.href = "cart.html";
+}
+
+
+function buyProduct(name, price, image, sizeId) {
+
+    const size =
+        document.getElementById(sizeId).value;
+
+    if (!size) {
+        alert("Please select a size first.");
+        return;
+    }
+
+    const cart = [{
+        name: name,
+        price: Number(price),
+        image: image,
+        size: size,
+        quantity: 1
+    }];
+
+    saveCart(cart);
+
+    window.location.href = "checkout.html";
+}
+
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    let count = 0;
+
+    cart.forEach(item => {
+        count += item.quantity;
+    });
+
+    document.getElementById("cartCount")
+        .textContent = count;
+}
+
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>

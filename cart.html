@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FITFLICK | Cart</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f7f7;
+            color: #111;
+        }
+
+        /* HEADER */
+
+        header {
+            height: 75px;
+            background: white;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo img {
+            width: 140px;
+            height: auto;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .cart-link {
+            background: #111;
+            color: white !important;
+            padding: 11px 18px;
+            border-radius: 25px;
+        }
+
+        /* TITLE */
+
+        .page-title {
+            text-align: center;
+            padding: 55px 20px;
+            background: linear-gradient(120deg, #fff1f3, #f3f4ff);
+        }
+
+        .page-title h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-title h1 span {
+            color: #e63946;
+        }
+
+        .page-title p {
+            color: #666;
+        }
+
+        /* CART AREA */
+
+        .cart-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* CART ITEMS */
+
+        .cart-items {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .cart-items h2 {
+            margin-bottom: 25px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #eee;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-details h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .item-price {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 6px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .quantity span {
+            min-width: 25px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .remove {
+            background: #ffe5e8;
+            color: #e63946;
+            border: none;
+            padding: 9px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove:hover {
+            background: #e63946;
+            color: white;
+        }
+
+        /* EMPTY CART */
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #777;
+        }
+
+        .empty-cart .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .shop-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 13px 25px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+        }
+
+        .shop-button:hover {
+            background: #e63946;
+        }
+
+        /* SUMMARY */
+
+        .summary {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            height: fit-content;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .summary h2 {
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 17px;
+            color: #555;
+        }
+
+        .summary-total {
+            border-top: 1px solid #ddd;
+            padding-top: 18px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .checkout-button {
+            width: 100%;
+            border: none;
+            margin-top: 25px;
+            padding: 15px;
+            background: #e63946;
+            color: white;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .checkout-button:hover {
+            background: #c92535;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            color: #999;
+            margin-top: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            nav a:not(.cart-link) {
+                display: none;
+            }
+
+            .cart-container {
+                grid-template-columns: 1fr;
+                width: 94%;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .cart-item {
+                align-items: flex-start;
+            }
+
+            .cart-item img {
+                width: 80px;
+                height: 100px;
+            }
+
+            .item-details h3 {
+                font-size: 15px;
+            }
+
+            .remove {
+                font-size: 11px;
+                padding: 7px;
+            }
+
+            .page-title h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="FITFLICK Logo">
+        </a>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="shirts.html">Shirts</a>
+
+            <a href="jackets.html">Jackets</a>
+
+            <a href="pants.html">Pants</a>
+
+            <a href="cart.html" class="cart-link">
+                🛒 Cart
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- PAGE TITLE -->
+
+    <section class="page-title">
+
+        <h1>
+            Your <span>Cart</span>
+        </h1>
+
+        <p>
+            Review your selected FITFLICK products
+        </p>
+
+    </section>
+
+
+    <!-- CART -->
+
+    <main class="cart-container">
+
+        <!-- CART ITEMS -->
+
+        <section class="cart-items">
+
+            <h2>
+                Shopping Cart
+            </h2>
+
+            <div id="cartItems">
+
+                <!-- Products will appear here -->
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary">
+
+            <h2>
+                Order Summary
+            </h2>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="subtotal">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Delivery</span>
+
+                <span id="delivery">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <div class="summary-total">
+
+                <span>Total</span>
+
+                <span id="total">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <button
+                class="checkout-button"
+                onclick="goToCheckout()">
+
+                Proceed to Checkout →
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>FITFLICK</h3>
+
+        <p>
+            Fashion that fits you.
+        </p>
+
+        <p>
+            © 2026 FITFLICK. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- CART JAVASCRIPT -->
+
+    <script>
+
+        /*
+         * Get cart from browser storage.
+         * If there is no cart, create an empty one.
+         */
+
+        let cart = JSON.parse(
+            localStorage.getItem("fitflickCart")
+        ) || [];
+
+
+        /* DISPLAY CART */
+
+        function displayCart() {
+
+            const cartItems =
+                document.getElementById("cartItems");
+
+            const subtotalElement =
+                document.getElementById("subtotal");
+
+            const deliveryElement =
+                document.getElementById("delivery");
+
+            const totalElement =
+                document.getElementById("total");
+
+
+            /* EMPTY CART */
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+
+                    <div class="empty-cart">
+
+                        <div class="icon">
+                            🛒
+                        </div>
+
+                        <h3>
+                            Your cart is empty
+                        </h3>
+
+                        <p>
+                            Add some products from FITFLICK.
+                        </p>
+
+                        <a
+                            href="shirts.html"
+                            class="shop-button">
+
+                            Continue Shopping
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                subtotalElement.textContent = "₹0";
+                deliveryElement.textContent = "₹0";
+                totalElement.textContent = "₹0";
+
+                return;
+            }
+
+
+            /* SHOW PRODUCTS */
+
+            cartItems.innerHTML = "";
+
+
+            cart.forEach(function(item, index) {
+
+                const itemTotal =
+                    item.price * item.quantity;
+
+
+                cartItems.innerHTML += `
+
+                    <div class="cart-item">
+
+                        <img
+                            src="${item.image}"
+                            alt="${item.name}">
+
+                        <div class="item-details">
+
+                            <h3>
+                                ${item.name}
+                            </h3>
+
+                            <div class="item-price">
+                                ₹${item.price}
+                            </div>
+
+                            <div class="quantity">
+
+                                <button
+                                    onclick="changeQuantity(${index}, -1)">
+                                    −
+                                </button>
+
+                                <span>
+                                    ${item.quantity}
+                                </span>
+
+                                <button
+                                    onclick="changeQuantity(${index}, 1)">
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                ₹${itemTotal}
+                            </strong>
+
+                            <br><br>
+
+                            <button
+                                class="remove"
+                                onclick="removeItem(${index})">
+
+                                Remove
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            /* CALCULATE SUBTOTAL */
+
+            let subtotal = 0;
+
+            cart.forEach(function(item) {
+
+                subtotal +=
+                    item.price * item.quantity;
+
+            });
+
+
+            /*
+             * Example delivery charge:
+             * Free delivery for orders ₹2000+
+             * ₹50 otherwise.
+             */
+
+            let delivery = subtotal >= 2000 ? 0 : 50;
+
+
+            let total = subtotal + delivery;
+
+
+            subtotalElement.textContent =
+                "₹" + subtotal;
+
+            deliveryElement.textContent =
+                "₹" + delivery;
+
+            totalElement.textContent =
+                "₹" + total;
+
+        }
+
+
+        /* CHANGE QUANTITY */
+
+        function changeQuantity(index, amount) {
+
+            cart[index].quantity += amount;
+
+
+            if (cart[index].quantity <= 0) {
+
+                cart.splice(index, 1);
+
+            }
+
+
+            saveCart();
+
+        }
+
+
+        /* REMOVE PRODUCT */
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            saveCart();
+
+        }
+
+
+        /* SAVE CART */
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "fitflickCart",
+                JSON.stringify(cart)
+            );
+
+            displayCart();
+
+        }
+
+
+        /* CHECKOUT */
+
+        function goToCheckout() {
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Your cart is empty. Please add a product first."
+                );
+
+                return;
+            }
+
+
+            window.location.href =
+                "checkout.html";
+
+        }
+
+
+        /* LOAD CART */
+
+        displayCart();
+
+    </script>
+
+</body>
+</html>

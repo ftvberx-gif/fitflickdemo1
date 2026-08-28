@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FITFLICK | Checkout</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        header {
+            height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo img {
+            width: 135px;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #111;
+            font-weight: bold;
+        }
+
+        .title {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(120deg, #fff1f3, #f3f4ff);
+        }
+
+        .title h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .title span {
+            color: #e63946;
+        }
+
+        .title p {
+            color: #666;
+        }
+
+        .checkout {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            margin-bottom: 25px;
+        }
+
+        .box h2 {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 17px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .location-button {
+            width: 100%;
+            padding: 13px;
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .location-button:hover {
+            background: #333;
+        }
+
+        #locationStatus {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .payment-option input {
+            width: auto;
+            margin: 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            color: #555;
+        }
+
+        .total {
+            border-top: 1px solid #ddd;
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .place-order {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #e63946;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .place-order:hover {
+            background: #c92535;
+        }
+
+        .note {
+            background: #fff6d8;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #6d5700;
+            margin-top: 15px;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer p {
+            color: #999;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 800px) {
+
+            .checkout {
+                grid-template-columns: 1fr;
+                width: 94%;
+            }
+
+            .title h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="FITFLICK Logo">
+    </a>
+
+    <a href="cart.html">
+        ← Back to Cart
+    </a>
+
+</header>
+
+
+<section class="title">
+
+    <h1>
+        FITFLICK <span>Checkout</span>
+    </h1>
+
+    <p>
+        Enter your delivery details
+    </p>
+
+</section>
+
+
+<main class="checkout">
+
+    <!-- CUSTOMER DETAILS -->
+
+    <section>
+
+        <div class="box">
+
+            <h2>Customer Details</h2>
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required>
+
+
+            <label>Mobile Number</label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter mobile number"
+                maxlength="10"
+                required>
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter email address">
+
+
+            <label>Delivery Address</label>
+
+            <textarea
+                id="address"
+                placeholder="House number, street, area..."
+                required></textarea>
+
+
+            <label>City</label>
+
+            <input
+                type="text"
+                id="city"
+                placeholder="Enter city"
+                required>
+
+
+            <label>PIN Code</label>
+
+            <input
+                type="text"
+                id="pincode"
+                placeholder="6 digit PIN code"
+                maxlength="6"
+                required>
+
+
+            <button
+                class="location-button"
+                onclick="getLocation()">
+
+                📍 Use My Current Location
+
+            </button>
+
+            <p id="locationStatus">
+                Location has not been selected.
+            </p>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="box">
+
+            <h2>Payment Method</h2>
+
+            <div class="payment-option">
+
+                <input
+                    type="radio"
+                    name="payment"
+                    value="online"
+                    checked>
+
+                <span>
+                    💳 Online Payment
+                </span>
+
+            </div>
+
+            <div class="note">
+
+                Online payment is required for placing an order.
+
+                Cancellation is allowed before 24 hours,
+                according to the store's cancellation policy.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ORDER SUMMARY -->
+
+    <section>
+
+        <div class="box">
+
+            <h2>Order Summary</h2>
+
+            <div id="orderItems"></div>
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="subtotal">
+                    ₹0
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Delivery</span>
+
+                <span id="delivery">
+                    ₹0
+                </span>
+
+            </div>
+
+            <div class="total">
+
+                <span>Total</span>
+
+                <span id="total">
+                    ₹0
+                </span>
+
+            </div>
+
+            <button
+                class="place-order"
+                onclick="placeOrder()">
+
+                Continue to Payment
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <h3>FITFLICK</h3>
+
+    <p>Fashion that fits you.</p>
+
+    <p>© 2026 FITFLICK. All Rights Reserved.</p>
+
+</footer>
+
+
+<script>
+
+    let cart =
+        JSON.parse(localStorage.getItem("fitflickCart")) || [];
+
+
+    /* SHOW ORDER */
+
+    function loadOrder() {
+
+        const orderItems =
+            document.getElementById("orderItems");
+
+        if (cart.length === 0) {
+
+            orderItems.innerHTML =
+                "<p>Your cart is empty.</p>";
+
+            document.getElementById("subtotal").textContent = "₹0";
+            document.getElementById("delivery").textContent = "₹0";
+            document.getElementById("total").textContent = "₹0";
+
+            return;
+        }
+
+
+        let subtotal = 0;
+
+        orderItems.innerHTML = "";
+
+
+        cart.forEach(function(item) {
+
+            const itemTotal =
+                item.price * item.quantity;
+
+            subtotal += itemTotal;
+
+
+            orderItems.innerHTML += `
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    margin-bottom:12px;
+                    font-size:14px;
+                ">
+
+                    <span>
+                        ${item.name} × ${item.quantity}
+                    </span>
+
+                    <strong>
+                        ₹${itemTotal}
+                    </strong>
+
+                </div>
+
+            `;
+
+        });
+
+
+        const delivery =
+            subtotal >= 2000 ? 0 : 50;
+
+        const total =
+            subtotal + delivery;
+
+
+        document.getElementById("subtotal")
+            .textContent = "₹" + subtotal;
+
+        document.getElementById("delivery")
+            .textContent = "₹" + delivery;
+
+        document.getElementById("total")
+            .textContent = "₹" + total;
+
+    }
+
+
+    /* CURRENT LOCATION */
+
+    function getLocation() {
+
+        const status =
+            document.getElementById("locationStatus");
+
+
+        if (!navigator.geolocation) {
+
+            status.textContent =
+                "Location is not supported by this browser.";
+
+            return;
+        }
+
+
+        status.textContent =
+            "Getting your location...";
+
+
+        navigator.geolocation.getCurrentPosition(
+
+            function(position) {
+
+                const latitude =
+                    position.coords.latitude;
+
+                const longitude =
+                    position.coords.longitude;
+
+
+                localStorage.setItem(
+                    "fitflickLocation",
+                    JSON.stringify({
+                        latitude: latitude,
+                        longitude: longitude
+                    })
+                );
+
+
+                status.textContent =
+                    "✓ Current location saved for delivery.";
+
+            },
+
+            function() {
+
+                status.textContent =
+                    "Unable to get your location. Please enter your address manually.";
+
+            }
+
+        );
+
+    }
+
+
+    /* PLACE ORDER */
+
+    function placeOrder() {
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const phone =
+            document.getElementById("phone").value.trim();
+
+        const address =
+            document.getElementById("address").value.trim();
+
+        const city =
+            document.getElementById("city").value.trim();
+
+        const pincode =
+            document.getElementById("pincode").value.trim();
+
+
+        if (!name || !phone || !address || !city || !pincode) {
+
+            alert(
+                "Please fill in all required delivery details."
+            );
+
+            return;
+        }
+
+
+        if (!/^[0-9]{10}$/.test(phone)) {
+
+            alert(
+                "Please enter a valid 10-digit mobile number."
+            );
+
+            return;
+        }
+
+
+        if (!/^[0-9]{6}$/.test(pincode)) {
+
+            alert(
+                "Please enter a valid 6-digit PIN code."
+            );
+
+            return;
+        }
+
+
+        if (cart.length === 0) {
+
+            alert(
+                "Your cart is empty."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Save customer information.
+         */
+
+        const customer = {
+
+            name: name,
+            phone: phone,
+            email:
+                document.getElementById("email").value.trim(),
+            address: address,
+            city: city,
+            pincode: pincode,
+
+            location:
+                JSON.parse(
+                    localStorage.getItem("fitflickLocation")
+                ) || null
+
+        };
+
+
+        localStorage.setItem(
+            "fitflickCustomer",
+            JSON.stringify(customer)
+        );
+
+
+        /*
+         * For now we save the order.
+         * Real online payment will be connected
+         * with a payment gateway later.
+         */
+
+        const order = {
+
+            orderId:
+                "FF" + Date.now(),
+
+            customer: customer,
+
+            items: cart,
+
+            orderTime:
+                new Date().toISOString(),
+
+            status:
+                "Waiting for Payment"
+
+        };
+
+
+        localStorage.setItem(
+            "fitflickOrder",
+            JSON.stringify(order)
+        );
+
+
+        /*
+         * Temporary next page.
+         */
+
+        window.location.href =
+            "payment.html";
+
+    }
+
+
+    loadOrder();
+
+</script>
+
+</body>
+</html>
