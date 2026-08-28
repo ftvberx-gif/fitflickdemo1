@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FITFLICK | Admin</title>
+    <title>FITFLICK | Admin Dashboard</title>
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
 
         body {
-            background: #f5f6f8;
+            background: #f5f6fa;
             color: #111;
         }
 
@@ -27,15 +27,13 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #111, #e63946);
-            padding: 20px;
         }
 
         .login-box {
-            width: 100%;
-            max-width: 400px;
+            width: 360px;
             background: white;
             padding: 35px;
-            border-radius: 20px;
+            border-radius: 18px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         }
 
@@ -44,54 +42,41 @@
             margin-bottom: 8px;
         }
 
-        .login-box h1 span {
-            color: #e63946;
-        }
-
         .login-box p {
             text-align: center;
             color: #777;
-            margin-bottom: 28px;
+            margin-bottom: 25px;
         }
 
-        label {
-            display: block;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 7px;
-        }
-
-        input,
-        select {
+        .login-box input {
             width: 100%;
             padding: 13px;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 17px;
+            border-radius: 7px;
             font-size: 15px;
         }
 
-        .login-button {
+        .login-box button {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             border: none;
-            border-radius: 8px;
-            background: #e63946;
+            background: #111;
             color: white;
+            border-radius: 7px;
             font-weight: bold;
-            font-size: 16px;
             cursor: pointer;
         }
 
-        .login-button:hover {
-            background: #c92535;
+        .login-box button:hover {
+            background: #e63946;
         }
 
         #loginError {
             color: #e63946;
             text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
+            margin-top: 12px;
+            display: none;
         }
 
         /* ADMIN */
@@ -101,216 +86,239 @@
         }
 
         header {
-            height: 75px;
-            background: white;
-            padding: 0 6%;
+            height: 70px;
+            background: #111;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            padding: 0 5%;
         }
 
-        .logo img {
-            width: 135px;
+        .brand {
+            font-size: 25px;
+            font-weight: bold;
         }
 
-        .logout {
-            border: none;
-            background: #111;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        .logout:hover {
-            background: #e63946;
-        }
-
-        .admin-title {
-            padding: 45px 6%;
-            background: linear-gradient(120deg, #fff1f3, #f3f4ff);
-        }
-
-        .admin-title h1 {
-            font-size: 38px;
-        }
-
-        .admin-title span {
+        .brand span {
             color: #e63946;
         }
 
-        .admin-title p {
-            color: #666;
-            margin-top: 8px;
+        .logout {
+            background: #e63946;
+            border: none;
+            color: white;
+            padding: 9px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-        .dashboard {
-            width: 88%;
+        .container {
+            width: 92%;
             max-width: 1300px;
-            margin: 35px auto 70px;
+            margin: 30px auto;
         }
 
-        /* STATS */
+        /* DASHBOARD CARDS */
 
-        .stats {
+        .cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
             margin-bottom: 30px;
         }
 
-        .stat {
+        .card {
             background: white;
             padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
-        .stat h3 {
+        .card h3 {
             color: #777;
             font-size: 14px;
             margin-bottom: 10px;
         }
 
-        .stat strong {
-            font-size: 28px;
+        .card strong {
+            font-size: 30px;
+        }
+
+        /* SECTIONS */
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
         }
 
         /* ADD PRODUCT */
 
-        .panel {
-            background: white;
-            padding: 28px;
-            border-radius: 18px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
-        }
-
-        .panel h2 {
-            margin-bottom: 25px;
-        }
-
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0 20px;
+            gap: 15px;
         }
 
-        .full {
-            grid-column: 1 / -1;
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
         }
 
-        .add-button {
-            border: none;
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+        }
+
+        .add-btn {
+            margin-top: 18px;
+            padding: 12px 22px;
             background: #111;
             color: white;
-            padding: 13px 25px;
-            border-radius: 8px;
+            border: none;
+            border-radius: 7px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        .add-button:hover {
+        .add-btn:hover {
             background: #e63946;
+        }
+
+        /* TABLE */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            background: #111;
+            color: white;
+            padding: 13px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status {
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #eee;
+        }
+
+        .status-select {
+            padding: 7px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .delete-btn {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         /* PRODUCTS */
 
-        .product-table {
-            width: 100%;
-            border-collapse: collapse;
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
-        .product-table th,
-        .product-table td {
-            padding: 14px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
+        .product-item {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
         }
 
-        .product-table th {
-            background: #f7f7f7;
+        .product-item h3 {
+            margin-bottom: 7px;
         }
 
-        .product-image {
-            width: 55px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 7px;
-        }
-
-        .edit-button {
-            background: #111;
-            color: white;
-            border: none;
-            padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .delete-button {
-            background: #ffe5e8;
-            color: #e63946;
-            border: none;
-            padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-left: 5px;
+        .product-item p {
+            color: #666;
+            margin-bottom: 5px;
         }
 
         /* OFFER */
 
         .offer-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            gap: 10px;
         }
 
-        .save-offer {
-            background: #e63946;
-            color: white;
-            border: none;
-            padding: 13px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
+        .offer-box input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
         }
 
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 30px;
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-list {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
-        footer p {
-            color: #999;
-            margin-top: 8px;
-        }
+        @media (max-width: 600px) {
 
-        @media (max-width: 800px) {
+            header {
+                padding: 0 4%;
+            }
 
-            .stats {
+            .container {
+                width: 94%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-grid {
                 grid-template-columns: 1fr;
             }
 
-            .form-grid,
+            .product-list {
+                grid-template-columns: 1fr;
+            }
+
             .offer-box {
-                grid-template-columns: 1fr;
-            }
-
-            .full {
-                grid-column: auto;
-            }
-
-            .product-table {
-                font-size: 12px;
-            }
-
-            .product-table th:nth-child(3),
-            .product-table td:nth-child(3) {
-                display: none;
+                flex-direction: column;
             }
         }
     </style>
@@ -321,134 +329,100 @@
 
 <!-- ================= LOGIN ================= -->
 
-<section id="loginPage">
+<div id="loginPage">
 
     <div class="login-box">
 
-        <h1>
-            FIT<span>FLICK</span>
-        </h1>
+        <h1>FIT<span style="color:#e63946;">FLICK</span></h1>
 
-        <p>
-            Admin Dashboard
-        </p>
-
-
-        <label>
-            Admin Username
-        </label>
+        <p>Admin Dashboard</p>
 
         <input
             type="text"
-            id="adminUsername"
-            placeholder="Enter username">
-
-
-        <label>
-            Admin Password
-        </label>
+            id="username"
+            placeholder="Username">
 
         <input
             type="password"
-            id="adminPassword"
-            placeholder="Enter password">
+            id="password"
+            placeholder="Password">
 
-
-        <button
-            class="login-button"
-            onclick="adminLogin()">
-
+        <button onclick="login()">
             Login
-
         </button>
 
-
-        <div id="loginError"></div>
+        <div id="loginError">
+            Wrong username or password
+        </div>
 
     </div>
 
-</section>
-
+</div>
 
 
 <!-- ================= ADMIN PAGE ================= -->
 
-<section id="adminPage">
+<div id="adminPage">
 
     <header>
 
-        <a href="index.html">
-            <img
-                src="images/logo.png"
-                class="logo"
-                alt="FITFLICK Logo">
-        </a>
+        <div class="brand">
+            FIT<span>FLICK</span> ADMIN
+        </div>
 
-        <button
-            class="logout"
-            onclick="logout()">
-
+        <button class="logout" onclick="logout()">
             Logout
-
         </button>
 
     </header>
 
 
-    <section class="admin-title">
-
-        <h1>
-            FITFLICK <span>Admin Panel</span>
-        </h1>
-
-        <p>
-            Manage your products, prices and offers.
-        </p>
-
-    </section>
+    <div class="container">
 
 
-    <main class="dashboard">
+        <!-- DASHBOARD -->
 
+        <div class="cards">
 
-        <!-- STATS -->
+            <div class="card">
 
-        <div class="stats">
+                <h3>Total Orders</h3>
 
-            <div class="stat">
-
-                <h3>
-                    TOTAL PRODUCTS
-                </h3>
-
-                <strong id="productCount">
+                <strong id="totalOrders">
                     0
                 </strong>
 
             </div>
 
 
-            <div class="stat">
+            <div class="card">
 
-                <h3>
-                    CART ORDERS
-                </h3>
+                <h3>Paid Orders</h3>
 
-                <strong id="orderCount">
+                <strong id="paidOrders">
                     0
                 </strong>
 
             </div>
 
 
-            <div class="stat">
+            <div class="card">
 
-                <h3>
-                    CURRENT OFFER
-                </h3>
+                <h3>Total Products</h3>
 
-                <strong id="offerDisplay">
-                    None
+                <strong id="totalProducts">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Total Sales</h3>
+
+                <strong>
+                    ₹<span id="totalSales">0</span>
                 </strong>
 
             </div>
@@ -456,37 +430,67 @@
         </div>
 
 
+        <!-- ================= ORDERS ================= -->
 
-        <!-- ADD PRODUCT -->
+        <div class="section">
 
-        <div class="panel">
+            <h2>📦 Customer Orders</h2>
 
-            <h2>
-                ➕ Add New Product
-            </h2>
+            <div class="table-container">
 
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Product</th>
+                            <th>Total</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="ordersTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= ADD PRODUCT ================= -->
+
+        <div class="section">
+
+            <h2>➕ Add New Product</h2>
 
             <div class="form-grid">
 
-                <div>
+                <div class="form-group">
 
-                    <label>
-                        Product Name
-                    </label>
+                    <label>Product Name</label>
 
                     <input
                         type="text"
                         id="productName"
-                        placeholder="Example: Premium Shirt">
+                        placeholder="Example: Levi's Pants">
 
                 </div>
 
 
-                <div>
+                <div class="form-group">
 
-                    <label>
-                        Category
-                    </label>
+                    <label>Category</label>
 
                     <select id="productCategory">
 
@@ -507,52 +511,33 @@
                 </div>
 
 
-                <div>
+                <div class="form-group">
 
-                    <label>
-                        Price (₹)
-                    </label>
+                    <label>Price</label>
 
                     <input
                         type="number"
                         id="productPrice"
-                        placeholder="999">
+                        placeholder="1999">
 
                 </div>
 
 
-                <div>
+                <div class="form-group">
 
-                    <label>
-                        Offer Price (₹)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="offerPrice"
-                        placeholder="799">
-
-                </div>
-
-
-                <div class="full">
-
-                    <label>
-                        Image File Name
-                    </label>
+                    <label>Offer</label>
 
                     <input
                         type="text"
-                        id="productImage"
-                        placeholder="images/shirts/shirt1.jpg">
+                        id="productOffer"
+                        placeholder="20% OFF">
 
                 </div>
 
             </div>
 
-
             <button
-                class="add-button"
+                class="add-btn"
                 onclick="addProduct()">
 
                 Add Product
@@ -562,408 +547,241 @@
         </div>
 
 
+        <!-- ================= PRODUCTS ================= -->
 
-        <!-- PRODUCTS -->
+        <div class="section">
 
-        <div class="panel">
+            <h2>👕 Products</h2>
 
-            <h2>
-                📦 Products
-            </h2>
-
-
-            <div style="overflow-x:auto;">
-
-                <table class="product-table">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Image
-                            </th>
-
-                            <th>
-                                Product
-                            </th>
-
-                            <th>
-                                Category
-                            </th>
-
-                            <th>
-                                Price
-                            </th>
-
-                            <th>
-                                Offer
-                            </th>
-
-                            <th>
-                                Action
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="productList">
-
-                    </tbody>
-
-                </table>
+            <div
+                class="product-list"
+                id="productList">
 
             </div>
 
         </div>
 
 
+        <!-- ================= OFFERS ================= -->
 
-        <!-- OFFERS -->
+        <div class="section">
 
-        <div class="panel">
-
-            <h2>
-                🏷️ Website Offer
-            </h2>
-
+            <h2>🏷️ Update Store Offer</h2>
 
             <div class="offer-box">
 
-                <div>
+                <input
+                    type="text"
+                    id="storeOffer"
+                    placeholder="Example: 30% OFF">
 
-                    <label>
-                        Offer Text
-                    </label>
+                <button
+                    class="add-btn"
+                    onclick="saveOffer()">
 
-                    <input
-                        type="text"
-                        id="offerText"
-                        placeholder="Example: 20% OFF">
+                    Save Offer
 
-                </div>
-
-
-                <div>
-
-                    <label>
-                        Offer Code
-                    </label>
-
-                    <input
-                        type="text"
-                        id="offerCode"
-                        placeholder="FIT20">
-
-                </div>
+                </button>
 
             </div>
 
+            <p
+                id="currentOffer"
+                style="margin-top:15px;color:#666;">
 
-            <button
-                class="save-offer"
-                onclick="saveOffer()">
-
-                Save Offer
-
-            </button>
+            </p>
 
         </div>
 
-    </main>
 
+    </div>
 
-    <footer>
-
-        <h3>
-            FITFLICK
-        </h3>
-
-        <p>
-            Admin Dashboard
-        </p>
-
-        <p>
-            © 2026 FITFLICK
-        </p>
-
-    </footer>
-
-</section>
-
+</div>
 
 
 <script>
 
-/* ================= LOGIN ================= */
+    /* ================= LOGIN ================= */
 
-/*
- * DEMO FRONT-END LOGIN ONLY.
- *
- * Do NOT use these credentials for a real
- * production store. We will replace this
- * with secure backend authentication.
- */
+    function login() {
 
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "fitflick123";
+        const username =
+            document.getElementById("username").value;
+
+        const password =
+            document.getElementById("password").value;
 
 
-function adminLogin() {
+        /*
+            DEMO LOGIN
 
-    const username =
-        document.getElementById("adminUsername").value;
+            Username: admin
+            Password: fitflick123
+        */
 
-    const password =
-        document.getElementById("adminPassword").value;
+        if (
+            username === "admin" &&
+            password === "fitflick123"
+        ) {
 
+            document.getElementById("loginPage")
+                .style.display = "none";
 
-    if (
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
-    ) {
+            document.getElementById("adminPage")
+                .style.display = "block";
 
-        sessionStorage.setItem(
-            "fitflickAdmin",
-            "true"
-        );
+            loadDashboard();
 
-        showAdmin();
+        } else {
 
-    } else {
+            document.getElementById("loginError")
+                .style.display = "block";
 
-        document.getElementById("loginError")
-            .textContent =
-            "Incorrect username or password.";
+        }
 
     }
 
-}
 
+    /* ================= LOGOUT ================= */
 
-/* SHOW ADMIN */
+    function logout() {
 
-function showAdmin() {
+        document.getElementById("adminPage")
+            .style.display = "none";
 
-    document.getElementById("loginPage")
-        .style.display = "none";
+        document.getElementById("loginPage")
+            .style.display = "flex";
 
-    document.getElementById("adminPage")
-        .style.display = "block";
-
-    loadProducts();
-
-    loadOffer();
-
-    updateStats();
-
-}
-
-
-/* LOGOUT */
-
-function logout() {
-
-    sessionStorage.removeItem(
-        "fitflickAdmin"
-    );
-
-    location.reload();
-
-}
-
-
-/* ================= PRODUCTS ================= */
-
-let products =
-    JSON.parse(
-        localStorage.getItem("fitflickProducts")
-    ) || [];
-
-
-function addProduct() {
-
-    const name =
-        document.getElementById("productName")
-            .value.trim();
-
-    const category =
-        document.getElementById("productCategory")
-            .value;
-
-    const price =
-        Number(
-            document.getElementById("productPrice")
-                .value
-        );
-
-    const offerPrice =
-        Number(
-            document.getElementById("offerPrice")
-                .value
-        );
-
-    const image =
-        document.getElementById("productImage")
-            .value.trim();
-
-
-    if (
-        !name ||
-        !price ||
-        !image
-    ) {
-
-        alert(
-            "Please enter product name, price and image."
-        );
-
-        return;
     }
 
 
-    const product = {
+    /* ================= ORDERS ================= */
 
-        id: Date.now(),
+    function getOrders() {
 
-        name: name,
+        return JSON.parse(
+            localStorage.getItem("fitflickOrders")
+        ) || [];
 
-        category: category,
-
-        price: price,
-
-        offerPrice:
-            offerPrice || null,
-
-        image: image
-
-    };
-
-
-    products.push(product);
-
-
-    localStorage.setItem(
-        "fitflickProducts",
-        JSON.stringify(products)
-    );
-
-
-    alert(
-        "Product added successfully!"
-    );
-
-
-    document.getElementById("productName")
-        .value = "";
-
-    document.getElementById("productPrice")
-        .value = "";
-
-    document.getElementById("offerPrice")
-        .value = "";
-
-    document.getElementById("productImage")
-        .value = "";
-
-
-    loadProducts();
-
-    updateStats();
-
-}
-
-
-/* LOAD PRODUCTS */
-
-function loadProducts() {
-
-    const list =
-        document.getElementById("productList");
-
-
-    list.innerHTML = "";
-
-
-    if (products.length === 0) {
-
-        list.innerHTML = `
-
-            <tr>
-
-                <td colspan="6"
-                    style="text-align:center;padding:30px;">
-
-                    No products added yet.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
     }
 
 
-    products.forEach(function(product) {
+    function loadOrders() {
 
-        list.innerHTML += `
+        const orders =
+            getOrders();
 
-            <tr>
+        const table =
+            document.getElementById("ordersTable");
+
+        table.innerHTML = "";
+
+
+        if (orders.length === 0) {
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="8"
+                        style="text-align:center;padding:30px;">
+                        No orders yet
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
+
+        orders.forEach((order, index) => {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${order.orderId || "FF-" + (index + 1)}
+                </td>
+
+                <td>
+                    ${order.customer?.name || "Unknown"}
+                </td>
+
+                <td>
+                    ${order.customer?.phone || "-"}
+                </td>
+
+                <td>
+                    ${order.product || "Multiple items"}
+                </td>
+
+                <td>
+                    ₹${order.total || 0}
+                </td>
+
+                <td>
+                    <span class="status">
+                        ${order.payment || "Pending"}
+                    </span>
+                </td>
 
                 <td>
 
-                    <img
-                        src="${product.image}"
-                        class="product-image"
-                        alt="${product.name}">
+                    <select
+                        class="status-select"
+                        onchange="updateStatus(${index}, this.value)">
+
+                        <option
+                            ${order.status === "Order Placed" ? "selected" : ""}>
+                            Order Placed
+                        </option>
+
+                        <option
+                            ${order.status === "Paid" ? "selected" : ""}>
+                            Paid
+                        </option>
+
+                        <option
+                            ${order.status === "Preparing" ? "selected" : ""}>
+                            Preparing
+                        </option>
+
+                        <option
+                            ${order.status === "Packed" ? "selected" : ""}>
+                            Packed
+                        </option>
+
+                        <option
+                            ${order.status === "Shipped" ? "selected" : ""}>
+                            Shipped
+                        </option>
+
+                        <option
+                            ${order.status === "Out for Delivery" ? "selected" : ""}>
+                            Out for Delivery
+                        </option>
+
+                        <option
+                            ${order.status === "Delivered" ? "selected" : ""}>
+                            Delivered
+                        </option>
+
+                        <option
+                            ${order.status === "Cancelled" ? "selected" : ""}>
+                            Cancelled
+                        </option>
+
+                    </select>
 
                 </td>
-
-
-                <td>
-                    ${product.name}
-                </td>
-
-
-                <td>
-                    ${product.category}
-                </td>
-
-
-                <td>
-                    ₹${product.price}
-                </td>
-
-
-                <td>
-
-                    ${
-                        product.offerPrice
-                        ? "₹" + product.offerPrice
-                        : "—"
-                    }
-
-                </td>
-
 
                 <td>
 
                     <button
-                        class="edit-button"
-                        onclick="editProduct(${product.id})">
-
-                        Edit
-
-                    </button>
-
-
-                    <button
-                        class="delete-button"
-                        onclick="deleteProduct(${product.id})">
+                        class="delete-btn"
+                        onclick="deleteOrder(${index})">
 
                         Delete
 
@@ -971,202 +789,346 @@ function loadProducts() {
 
                 </td>
 
-            </tr>
+            `;
 
-        `;
+            table.appendChild(row);
 
-    });
+        });
 
-}
-
-
-/* EDIT PRODUCT */
-
-function editProduct(id) {
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
-    if (!product) return;
-
-
-    const newPrice =
-        prompt(
-            "Enter new price:",
-            product.price
-        );
-
-
-    if (newPrice === null) return;
-
-
-    const newOffer =
-        prompt(
-            "Enter new offer price (leave blank for no offer):",
-            product.offerPrice || ""
-        );
-
-
-    product.price =
-        Number(newPrice);
-
-
-    product.offerPrice =
-        newOffer
-        ? Number(newOffer)
-        : null;
-
-
-    localStorage.setItem(
-        "fitflickProducts",
-        JSON.stringify(products)
-    );
-
-
-    loadProducts();
-
-}
-
-
-/* DELETE PRODUCT */
-
-function deleteProduct(id) {
-
-    if (
-        !confirm(
-            "Delete this product?"
-        )
-    ) {
-
-        return;
     }
 
 
-    products =
-        products.filter(
-            p => p.id !== id
+    function updateStatus(index, status) {
+
+        const orders =
+            getOrders();
+
+        orders[index].status =
+            status;
+
+        localStorage.setItem(
+            "fitflickOrders",
+            JSON.stringify(orders)
         );
 
-
-    localStorage.setItem(
-        "fitflickProducts",
-        JSON.stringify(products)
-    );
-
-
-    loadProducts();
-
-    updateStats();
-
-}
-
-
-/* ================= OFFERS ================= */
-
-function saveOffer() {
-
-    const text =
-        document.getElementById("offerText")
-            .value.trim();
-
-    const code =
-        document.getElementById("offerCode")
-            .value.trim();
-
-
-    if (!text) {
+        loadDashboard();
 
         alert(
-            "Enter an offer first."
+            "Order status updated to: " +
+            status
         );
 
-        return;
     }
 
 
-    const offer = {
+    function deleteOrder(index) {
 
-        text: text,
+        if (
+            !confirm(
+                "Delete this order?"
+            )
+        ) {
+            return;
+        }
 
-        code: code
+        const orders =
+            getOrders();
 
-    };
+        orders.splice(index, 1);
 
-
-    localStorage.setItem(
-        "fitflickOffer",
-        JSON.stringify(offer)
-    );
-
-
-    alert(
-        "Offer saved successfully!"
-    );
-
-
-    loadOffer();
-
-}
-
-
-/* LOAD OFFER */
-
-function loadOffer() {
-
-    const offer =
-        JSON.parse(
-            localStorage.getItem("fitflickOffer")
+        localStorage.setItem(
+            "fitflickOrders",
+            JSON.stringify(orders)
         );
 
+        loadDashboard();
 
-    if (!offer) {
-
-        document.getElementById("offerDisplay")
-            .textContent = "None";
-
-        return;
     }
 
 
-    document.getElementById("offerDisplay")
-        .textContent = offer.text;
+    /* ================= PRODUCTS ================= */
 
-}
+    function getProducts() {
 
-
-/* ================= STATS ================= */
-
-function updateStats() {
-
-    document.getElementById("productCount")
-        .textContent = products.length;
-
-
-    const cart =
-        JSON.parse(
-            localStorage.getItem("fitflickCart")
+        return JSON.parse(
+            localStorage.getItem("fitflickProducts")
         ) || [];
 
-
-    document.getElementById("orderCount")
-        .textContent = cart.length;
-
-}
+    }
 
 
-/* ================= START ================= */
+    function addProduct() {
 
-if (
-    sessionStorage.getItem("fitflickAdmin")
-    === "true"
-) {
+        const name =
+            document.getElementById("productName").value;
 
-    showAdmin();
+        const category =
+            document.getElementById("productCategory").value;
 
-}
+        const price =
+            document.getElementById("productPrice").value;
+
+        const offer =
+            document.getElementById("productOffer").value;
+
+
+        if (
+            name === "" ||
+            price === ""
+        ) {
+
+            alert(
+                "Please enter product name and price."
+            );
+
+            return;
+
+        }
+
+
+        const products =
+            getProducts();
+
+
+        products.push({
+
+            name: name,
+
+            category: category,
+
+            price: Number(price),
+
+            offer: offer
+
+        });
+
+
+        localStorage.setItem(
+            "fitflickProducts",
+            JSON.stringify(products)
+        );
+
+
+        document.getElementById("productName").value = "";
+        document.getElementById("productPrice").value = "";
+        document.getElementById("productOffer").value = "";
+
+
+        loadDashboard();
+
+        alert(
+            "Product added successfully!"
+        );
+
+    }
+
+
+    function loadProducts() {
+
+        const products =
+            getProducts();
+
+        const list =
+            document.getElementById("productList");
+
+        list.innerHTML = "";
+
+
+        if (products.length === 0) {
+
+            list.innerHTML =
+                "<p>No products added yet.</p>";
+
+            return;
+
+        }
+
+
+        products.forEach((product, index) => {
+
+            list.innerHTML += `
+
+                <div class="product-item">
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <p>
+                        Category: ${product.category}
+                    </p>
+
+                    <p>
+                        Price: ₹${product.price}
+                    </p>
+
+                    <p>
+                        Offer: ${product.offer || "No offer"}
+                    </p>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteProduct(${index})">
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    function deleteProduct(index) {
+
+        if (
+            !confirm(
+                "Delete this product?"
+            )
+        ) {
+            return;
+        }
+
+
+        const products =
+            getProducts();
+
+        products.splice(index, 1);
+
+
+        localStorage.setItem(
+            "fitflickProducts",
+            JSON.stringify(products)
+        );
+
+
+        loadDashboard();
+
+    }
+
+
+    /* ================= OFFERS ================= */
+
+    function saveOffer() {
+
+        const offer =
+            document.getElementById("storeOffer").value;
+
+
+        if (offer === "") {
+
+            alert(
+                "Enter an offer first."
+            );
+
+            return;
+
+        }
+
+
+        localStorage.setItem(
+            "fitflickOffer",
+            offer
+        );
+
+
+        showOffer();
+
+        alert(
+            "Store offer updated!"
+        );
+
+    }
+
+
+    function showOffer() {
+
+        const offer =
+            localStorage.getItem(
+                "fitflickOffer"
+            );
+
+
+        document.getElementById(
+            "currentOffer"
+        ).textContent =
+            offer
+            ? "Current Offer: " + offer
+            : "No offer currently active.";
+
+    }
+
+
+    /* ================= DASHBOARD ================= */
+
+    function loadDashboard() {
+
+        const orders =
+            getOrders();
+
+        const products =
+            getProducts();
+
+
+        document.getElementById(
+            "totalOrders"
+        ).textContent =
+            orders.length;
+
+
+        const paid =
+            orders.filter(
+                order =>
+                    order.payment === "Paid"
+            ).length;
+
+
+        document.getElementById(
+            "paidOrders"
+        ).textContent =
+            paid;
+
+
+        document.getElementById(
+            "totalProducts"
+        ).textContent =
+            products.length;
+
+
+        let sales = 0;
+
+
+        orders.forEach(order => {
+
+            if (
+                order.payment === "Paid"
+            ) {
+
+                sales +=
+                    Number(order.total) || 0;
+
+            }
+
+        });
+
+
+        document.getElementById(
+            "totalSales"
+        ).textContent =
+            sales;
+
+
+        loadOrders();
+
+        loadProducts();
+
+        showOffer();
+
+    }
 
 </script>
 
